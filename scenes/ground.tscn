@@ -1,0 +1,31 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ground.gd" id="1_ground"]
+[ext_resource type="Texture2D" path="res://assets/textures/grass.png" id="2_grass"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grass"]
+albedo_texture = ExtResource("2_grass")
+roughness = 1.0
+uv1_scale = Vector3(0.125, 0.125, 0.125)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 4
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ground"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_grass")
+size = Vector2(32, 32)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
+resource_local_to_scene = true
+size = Vector3(32, 1, 32)
+
+[node name="Ground" type="StaticBody3D"]
+script = ExtResource("1_ground")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_ground")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+position = Vector3(0, -0.5, 0)
+shape = SubResource("BoxShape3D_ground")

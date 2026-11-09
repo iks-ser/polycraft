@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/models/bush_small.obj" id="1_mesh"]
+
+[node name="BushSmall" type="MeshInstance3D"]
+mesh = ExtResource("1_mesh")

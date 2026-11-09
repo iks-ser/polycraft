@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/models/tree_oak.obj" id="1_mesh"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_trunk"]
+height = 3.2
+radius = 0.38
+
+[node name="TreeOak" type="StaticBody3D"]
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_mesh")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+position = Vector3(0, 1.6, 0)
+shape = SubResource("CylinderShape3D_trunk")

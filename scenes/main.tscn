@@ -1,0 +1,37 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_player"]
+[ext_resource type="Script" path="res://scripts/world_generator.gd" id="2_world"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_main"]
+sky_top_color = Color(0.32, 0.52, 0.84, 1)
+sky_horizon_color = Color(0.72, 0.82, 0.92, 1)
+ground_bottom_color = Color(0.32, 0.42, 0.3, 1)
+ground_horizon_color = Color(0.72, 0.82, 0.92, 1)
+
+[sub_resource type="Sky" id="Sky_main"]
+sky_material = SubResource("ProceduralSkyMaterial_main")
+
+[sub_resource type="Environment" id="Environment_main"]
+background_mode = 2
+sky = SubResource("Sky_main")
+fog_enabled = true
+fog_light_color = Color(0.72, 0.82, 0.92, 1)
+fog_density = 0.012
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_main")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-50, -30, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 80.0
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector3(0, 0.5, 0)
+
+[node name="World" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("2_world")
+target = NodePath("../Player")
